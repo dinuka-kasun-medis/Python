@@ -1,0 +1,72 @@
+class Node:
+    def __init__(self,data,node=None):
+        self.data=data
+        self.next=node
+
+class LinkedList:
+    def __init__(self):
+        self.root=None
+        self.size=0
+
+    def add(self,data):
+        new_node=Node(data,self.root)
+        self.root=new_node
+        self.size+=1
+
+    def search(self,data):
+        nd=self.root
+        while nd:
+            if nd.data==data:
+                return "Found"
+            else:
+                nd=nd.next
+        return "Not found"
+
+    def delete(self,val):
+        preNode=self.root
+        nd=self.root.next
+        if self.root.data==val:
+            self.root=self.root.next
+            self.size-=1
+            return "Deleted..."
+        else:
+            while nd:
+                if nd.data == val:
+                    preNode.next=nd.next
+                    self.size -= 1
+                    return "Deleted..."
+                else:
+                    preNode = nd
+                    nd=nd.next
+            return "No.."
+
+    def printLst(self):
+        nd = self.root
+        while nd:
+            print(nd.data," , ",end="")
+            nd = nd.next
+        print()
+
+
+
+
+
+
+
+list=LinkedList()
+list.add(10)
+list.add(11)
+list.add(12)
+list.add(13)
+list.printLst()
+print(list.size)
+print(list.search(12))
+print(list.search(100))
+print(list.delete(10))
+print(list.size)
+print(list.delete(12))
+print(list.size)
+print(list.delete(120))
+print(list.search(10))
+print(list.search(12))
+list.printLst()
